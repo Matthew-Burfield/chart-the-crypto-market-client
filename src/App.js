@@ -33,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <div className={ app }>
-        { this.state.isSelectingCurrency && <CurrencySelector /> }
+        <CurrencySelector isSelectingCurrency={ this.state.isSelectingCurrency } />
         <header className={ appHeader }>
           <h1 className={ appTitle }>Chart the Crypto Market</h1>
         </header>
