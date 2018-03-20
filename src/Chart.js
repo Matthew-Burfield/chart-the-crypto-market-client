@@ -3,7 +3,7 @@ import ChartJS from "chart.js";
 
 class Chart extends Component {
   componentDidMount() {
-    const myChart = new ChartJS(this.chart, {
+    new ChartJS(this.chart, {
       type: "bar",
       data: {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],

@@ -2,17 +2,28 @@ import axios from "axios";
 import React, { Component } from "react";
 
 import Chart from "./Chart";
-import logo from "./logo.svg";
-import "./App.css";
+import CurrencySelector from './CurrencySelector';
+import {
+  app,
+  appHeader,
+  appTitle,
+  appIntro,
+} from "./App.css.js";
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isSelectingCurrency: false,
+    }
+  }
   componentDidMount() {
     this.getListOfAvailableCurrencies();
   }
   getListOfAvailableCurrencies = async () => {
     const currencyList = await axios
       .get(
-        "https://min-api.cryptocompare.com/data/top/volumes?tsym=USD&limit=20"
+        "http://localhost:3001/top_20"
       )
       .then(response => response.data.Data);
     this.setState({
@@ -21,14 +32,15 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Chart the Crypto Market</h1>
+      <div className={ app }>
+        { this.state.isSelectingCurrency && <CurrencySelector /> }
+        <header className={ appHeader }>
+          <h1 className={ appTitle }>Chart the Crypto Market</h1>
         </header>
-        <p className="App-intro">
+        <p className={ appIntro }>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <button onClick={ () => { this.setState({ isSelectingCurrency: true }) } }>Select Currency's</button>
         <Chart />
       </div>
     );
