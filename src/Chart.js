@@ -32,6 +32,7 @@ class Chart extends Component {
         ]
       },
       options: {
+        maintainAspectRatio: false, 
         scales: {
           yAxes: [
             {
@@ -45,7 +46,7 @@ class Chart extends Component {
     });
   }
   render() {
-    return <canvas ref={c => (this.chart = c)} width="400" height="400" />;
+    return <canvas ref={c => (this.chart = c)} />;
   }
 }
 

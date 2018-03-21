@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 import Transition from 'react-transition-group/Transition'
+import PropTypes from 'prop-types'
 
 const duration = 300
+const startPosition = '-100vh'
+const endPosition = '0'
 const defaultStyle = {
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	right: 0,
+	bottom: 0,
 	backgroundColor: 'black',
-	width: '100vw',
-	height: '100vh',
 	transition: `transform ${duration}ms ease-in-out`,
-	transform: 'translateY(-700px)'
+	transform: `translateY(${startPosition})`,
+	zIndex: 1,
 }
 const transitionStyles = {
-	entering: { transform: 'translateY(-700px)' },
-	entered: { transform: 'translateY(0px)' },
-	exiting: { transform: 'translateY(0px)' },
-	exited: { transform: 'translateY(-700px)' },
+	entering: { transform: `translateY(${startPosition})` },
+	entered: { transform: `translateY(${endPosition})` },
 }
 
 export default class CurrencySelector extends Component {
@@ -22,14 +27,41 @@ export default class CurrencySelector extends Component {
 			<Transition
 				in={ this.props.isSelectingCurrency }
 				timeout={ duration }
+				mountOnEnter
+				unmountOnExit
 			>
 				{(state) => (
 					<div style={{
 						...defaultStyle,
 						...transitionStyles[state],
-					}}>Currency Selector</div>
+					}}>
+						{
+							this.props.currencyList.map(currency => (
+								<div key={ currency.symbol }>
+									<img alt={ currency.name } height='50' width='50' src={`https://www.cryptocompare.com${ currency.image_url }`} />
+									<div>{ currency.name }</div>
+								</div>
+							))
+						}
+					Currency Selector<button onClick={ this.props.toggleIsSelectingCurrency }>OK</button>
+					
+					</div>
 				)}
 			</Transition>
 		)
 	}
+}
+
+CurrencySelector.propTypes = {
+	toggleIsSelectingCurrency: PropTypes.func.isRequired,
+	currencyList: PropTypes.arrayOf(PropTypes.shape({
+		image_url: PropTypes.string,
+		name: PropTypes.string,
+		symbol: PropTypes.string,
+	})),
+	isSelectingCurrency: PropTypes.bool.isRequired,
+}
+
+CurrencySelector.defaultProps = {
+	currencyList: [],
 }
