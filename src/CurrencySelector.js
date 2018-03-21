@@ -15,6 +15,14 @@ const defaultStyle = {
 	transition: `transform ${duration}ms ease-in-out`,
 	transform: `translateY(${startPosition})`,
 	zIndex: 1,
+	display: 'grid',
+	gridTemplateColumns: 'repeat(5, 1fr)',
+	gridTemplateRows: 'repeat(3, 1fr)',
+	gridColumnGap: '5%',
+	gridRowGap: '5%',
+	color: 'white',
+	justifyItems: 'center',
+	alignItems: 'center',
 }
 const transitionStyles = {
 	entering: { transform: `translateY(${startPosition})` },
@@ -43,8 +51,7 @@ export default class CurrencySelector extends Component {
 								</div>
 							))
 						}
-					Currency Selector<button onClick={ this.props.toggleIsSelectingCurrency }>OK</button>
-					
+						<button onClick={ this.props.toggleIsSelectingCurrency }>OK</button>
 					</div>
 				)}
 			</Transition>
