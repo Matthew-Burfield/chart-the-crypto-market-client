@@ -33,25 +33,30 @@ export default class CurrencySelector extends Component {
 	render() {
 		return (
 			<Transition
-				in={ this.props.isSelectingCurrency }
-				timeout={ duration }
+				in={this.props.isSelectingCurrency}
+				timeout={duration}
 				mountOnEnter
 				unmountOnExit
 			>
-				{(state) => (
-					<div style={{
-						...defaultStyle,
-						...transitionStyles[state],
-					}}>
-						{
-							this.props.currencyList.map(currency => (
-								<div key={ currency.symbol }>
-									<img alt={ currency.name } height='50' width='50' src={`https://www.cryptocompare.com${ currency.image_url }`} />
-									<div>{ currency.name }</div>
-								</div>
-							))
-						}
-						<button onClick={ this.props.toggleIsSelectingCurrency }>OK</button>
+				{state => (
+					<div
+						style={{
+							...defaultStyle,
+							...transitionStyles[state],
+						}}
+					>
+						{this.props.currencyList.map(currency => (
+							<div key={currency.symbol}>
+								<img
+									alt={currency.name}
+									height="50"
+									width="50"
+									src={`https://www.cryptocompare.com${currency.image_url}`}
+								/>
+								<div>{currency.name}</div>
+							</div>
+						))}
+						<button onClick={this.props.toggleIsSelectingCurrency}>OK</button>
 					</div>
 				)}
 			</Transition>
@@ -61,11 +66,13 @@ export default class CurrencySelector extends Component {
 
 CurrencySelector.propTypes = {
 	toggleIsSelectingCurrency: PropTypes.func.isRequired,
-	currencyList: PropTypes.arrayOf(PropTypes.shape({
-		image_url: PropTypes.string,
-		name: PropTypes.string,
-		symbol: PropTypes.string,
-	})),
+	currencyList: PropTypes.arrayOf(
+		PropTypes.shape({
+			image_url: PropTypes.string,
+			name: PropTypes.string,
+			symbol: PropTypes.string,
+		}),
+	),
 	isSelectingCurrency: PropTypes.bool.isRequired,
 }
 
