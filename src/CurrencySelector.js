@@ -1,3 +1,4 @@
+import { css } from 'emotion'
 import React, { Component } from 'react'
 import Transition from 'react-transition-group/Transition'
 import PropTypes from 'prop-types'
@@ -5,25 +6,25 @@ import PropTypes from 'prop-types'
 const duration = 300
 const startPosition = '-100vh'
 const endPosition = '0'
-const defaultStyle = {
-	position: 'absolute',
-	top: 0,
-	left: 0,
-	right: 0,
-	bottom: 0,
-	backgroundColor: 'black',
-	transition: `transform ${duration}ms ease-in-out`,
-	transform: `translateY(${startPosition})`,
-	zIndex: 1,
-	display: 'grid',
-	gridTemplateColumns: 'repeat(5, 1fr)',
-	gridTemplateRows: 'repeat(3, 1fr)',
-	gridColumnGap: '5%',
-	gridRowGap: '5%',
-	color: 'white',
-	justifyItems: 'center',
-	alignItems: 'center',
-}
+const defaultStyle = css`
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: black;
+	transition: transform ${duration}ms ease-in-out;
+	transform: translateY(${startPosition});
+	z-index: 1;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-column-gap: 5%;
+	grid-row-gap: 5%;
+	color: white;
+	justify-items: center;
+	align-items: center;
+`
 const transitionStyles = {
 	entering: { transform: `translateY(${startPosition})` },
 	entered: { transform: `translateY(${endPosition})` },
@@ -40,8 +41,8 @@ export default class CurrencySelector extends Component {
 			>
 				{state => (
 					<div
+						className={defaultStyle}
 						style={{
-							...defaultStyle,
 							...transitionStyles[state],
 						}}
 					>
