@@ -16,6 +16,7 @@ class App extends Component {
 	componentDidMount() {
 		this.getListOfAvailableCurrencies()
 		console.log(API_URL)
+		console.log(process.env.NODE_ENV)
 	}
 	getListOfAvailableCurrencies = async () => {
 		const currencyList = await axios
