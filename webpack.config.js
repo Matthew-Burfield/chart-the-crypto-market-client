@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const Jarvis = require('webpack-jarvis')
 
 module.exports = {
 	entry: ['babel-polyfill', './src/index.js', 'react-hot-loader/patch'],
@@ -19,7 +20,7 @@ module.exports = {
 		publicPath: '/',
 		filename: 'bundle.js',
 	},
-	plugins: [new webpack.HotModuleReplacementPlugin()],
+	plugins: [new webpack.HotModuleReplacementPlugin(), new Jarvis()],
 	devServer: {
 		contentBase: './dist',
 		hot: true,
