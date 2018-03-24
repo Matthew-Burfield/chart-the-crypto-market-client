@@ -2,27 +2,14 @@ import { css } from 'emotion'
 import React, { Component } from 'react'
 import Transition from 'react-transition-group/Transition'
 import PropTypes from 'prop-types'
+import Button from './Button'
 
-const duration = 300
-const startPosition = '-100vh'
-const endPosition = '0'
-const defaultStyle = css`
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: black;
-	transition: transform ${duration}ms ease-in-out;
-	transform: translateY(${startPosition});
-	z-index: 1;
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	color: white;
-	justify-items: center;
-	align-items: center;
-`
+import styles, {
+	duration,
+	startPosition,
+	endPosition,
+} from './CurrencySelector.css'
+
 const transitionStyles = {
 	entering: { transform: `translateY(${startPosition})` },
 	entered: { transform: `translateY(${endPosition})` },
@@ -39,23 +26,29 @@ export default class CurrencySelector extends Component {
 			>
 				{state => (
 					<div
-						className={defaultStyle}
+						className={styles.defaultStyle}
 						style={{
 							...transitionStyles[state],
 						}}
 					>
 						{this.props.currencyList.map(currency => (
-							<div key={currency.symbol}>
-								<img
-									alt={currency.name}
-									height="50"
-									width="50"
-									src={`https://www.cryptocompare.com${currency.image_url}`}
-								/>
-								<div>{currency.name}</div>
+							<div key={currency.symbol} className={styles.currencyItemWrapper}>
+								<div className={styles.currencyItemInnerWrapper}>
+									<img
+										alt={currency.name}
+										height="50"
+										width="50"
+										src={`https://www.cryptocompare.com${currency.image_url}`}
+									/>
+									<div>{currency.name}</div>
+								</div>
 							</div>
 						))}
-						<button onClick={this.props.toggleIsSelectingCurrency}>OK</button>
+						<div className={styles.buttonWrapper}>
+							<Button medium onClick={this.props.toggleIsSelectingCurrency}>
+								OK
+							</Button>
+						</div>
 					</div>
 				)}
 			</Transition>

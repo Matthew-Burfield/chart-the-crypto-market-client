@@ -1690,6 +1690,12 @@ create-ecdh@^4.0.0:
     bn.js "^4.1.0"
     elliptic "^6.0.0"
 
+create-emotion-styled@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/create-emotion-styled/-/create-emotion-styled-9.1.0.tgz#ad6ee63e9be342e9d6339e4e4ee758028e9b967f"
+  dependencies:
+    emotion-utils "^9.1.0"
+
 create-emotion@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-9.1.0.tgz#e3b7a3be314a5dfb6adcaf1d7a253ae257fc24b4"
@@ -4952,6 +4958,13 @@ react-dom@16.2.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react-emotion@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/react-emotion/-/react-emotion-9.1.0.tgz#6d12de5990510740d03e2cd9be3a681183316e38"
+  dependencies:
+    babel-plugin-emotion "^9.1.0"
+    create-emotion-styled "^9.1.0"
 
 react-hot-loader@4.0.0:
   version "4.0.0"

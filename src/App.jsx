@@ -19,9 +19,19 @@ class App extends Component {
 		console.log(process.env.NODE_ENV)
 	}
 	getListOfAvailableCurrencies = async () => {
-		const currencyList = await axios
-			.get(`${API_URL}/top_20`)
-			.then(response => response.data.data)
+		const currencyListLocalStorageKey = 'top_20'
+		let currencyList
+		if (localStorage.getItem(currencyListLocalStorageKey)) {
+			currencyList = JSON.parse(localStorage.getItem(currencyListLocalStorageKey))
+		} else {
+			currencyList = await axios
+				.get(`${API_URL}/top_20`)
+				.then(response => response.data.data)
+			localStorage.setItem(
+				currencyListLocalStorageKey,
+				JSON.stringify(currencyList),
+			)
+		}
 		this.setState({
 			currencyList,
 		})

@@ -26,6 +26,7 @@
     "babel-preset-stage-2": "6.24.1",
     "core-js": "2.5.3",
     "css-loader": "0.28.11",
+    "react-emotion": "9.1.0",
     "react-hot-loader": "4.0.0",
     "style-loader": "0.20.3",
     "webpack": "4.2.0",
