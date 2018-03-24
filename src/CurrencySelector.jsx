@@ -19,8 +19,6 @@ const defaultStyle = css`
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(3, 1fr);
-	grid-column-gap: 5%;
-	grid-row-gap: 5%;
 	color: white;
 	justify-items: center;
 	align-items: center;
