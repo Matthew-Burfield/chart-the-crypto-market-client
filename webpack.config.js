@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const Jarvis = require('webpack-jarvis')
 
 module.exports = {
-	entry: ['babel-polyfill', './src/index.js', 'react-hot-loader/patch'],
+	entry: ['./src/index.js', 'react-hot-loader/patch'],
 	module: {
 		rules: [
 			{

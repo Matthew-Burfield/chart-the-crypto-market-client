@@ -1,21 +1,22 @@
+import { connect } from 'react-redux'
 import { css } from 'emotion'
 import React, { Component } from 'react'
 import Transition from 'react-transition-group/Transition'
 import PropTypes from 'prop-types'
-import Button from './Button'
-
+import Button from '../Button'
 import styles, {
 	duration,
 	startPosition,
 	endPosition,
 } from './CurrencySelector.css'
+import { top20Props } from '../utils/propTypes'
 
 const transitionStyles = {
 	entering: { transform: `translateY(${startPosition})` },
 	entered: { transform: `translateY(${endPosition})` },
 }
 
-export default class CurrencySelector extends Component {
+class CurrencySelector extends Component {
 	render() {
 		return (
 			<Transition
@@ -31,7 +32,7 @@ export default class CurrencySelector extends Component {
 							...transitionStyles[state],
 						}}
 					>
-						{this.props.currencyList.map(currency => (
+						{this.props.top_20.map(currency => (
 							<div key={currency.symbol} className={styles.currencyItemWrapper}>
 								<div className={styles.currencyItemInnerWrapper}>
 									<img
@@ -58,16 +59,12 @@ export default class CurrencySelector extends Component {
 
 CurrencySelector.propTypes = {
 	toggleIsSelectingCurrency: PropTypes.func.isRequired,
-	currencyList: PropTypes.arrayOf(
-		PropTypes.shape({
-			image_url: PropTypes.string,
-			name: PropTypes.string,
-			symbol: PropTypes.string,
-		}),
-	),
+	top_20: top20Props,
 	isSelectingCurrency: PropTypes.bool.isRequired,
 }
 
-CurrencySelector.defaultProps = {
-	currencyList: [],
-}
+const mapStateToProps = state => ({
+	top_20: state.crypto.top_20,
+})
+
+export default connect(mapStateToProps)(CurrencySelector)

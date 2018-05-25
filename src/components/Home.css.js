@@ -1,5 +1,5 @@
 import { css } from 'emotion'
-import { primary } from './utils/colors'
+import { primary } from '../utils/colors'
 
 export default {
 	app: css`

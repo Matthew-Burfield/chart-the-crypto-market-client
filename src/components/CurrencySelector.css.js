@@ -1,5 +1,5 @@
 import { css } from 'emotion'
-import { primary, button, active, secondary } from './utils/colors'
+import { primary, background, active, secondary } from '../utils/colors'
 
 export const duration = 300
 export const startPosition = '-100vh'
@@ -25,9 +25,10 @@ export default {
 		grid-gap: 45px;
 		grid-row-gap: 45px;
 		padding: 35px;
+		color: ${active};
 	`,
 	currencyItemWrapper: css`
-		background-color: ${button};
+		background-color: ${primary};
 		height: 100%;
 		width: 100%;
 		border-radius: 80%;
@@ -40,7 +41,7 @@ export default {
 		}
 	`,
 	currencyItemInnerWrapper: css`
-		background-color: ${secondary};
+		background-color: ${background};
 		height: 100%;
 		width: 100%;
 		border-radius: 80%;

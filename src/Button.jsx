@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'react-emotion'
-import { button, active, outline, primary } from './utils/colors'
+import { background, secondary, active, outline, primary } from './utils/colors'
 
 const Button = props => (
 	<div className={props.className} onClick={props.onClick}>
@@ -10,8 +10,8 @@ const Button = props => (
 )
 
 const StyledButton = styled(Button)`
-	background-color: ${button};
-	color: ${primary};
+	background-color: ${background};
+	color: ${secondary};
 	height: 20px;
 	min-width: 60px;
 	transition: background-color 300ms ease-in-out;
@@ -24,7 +24,7 @@ const StyledButton = styled(Button)`
 	}};
 
 	&:hover {
-		background-color: ${active};
+		color: ${active};
 		cursor: pointer;
 	}
 `
@@ -38,7 +38,7 @@ Button.propTypes = {
 	className: PropTypes.string.isRequired,
 }
 
-Button.propTypes = {
+Button.defaultProps = {
 	onClick: () => {},
 	large: false,
 	medium: false,
